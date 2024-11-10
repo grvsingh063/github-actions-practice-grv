@@ -24,18 +24,24 @@ jobs:
 
             - name: Build Docker image
               run: |
-                docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} .
+                docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:v1 .
 
             - name: Push Docker image to Docker Hub
               run: |
-                docker push ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
+                docker push ${{ secrets.DOCKER_USERNAME }}/my-app:v1
 
             - name: List Docker images
-              run: docker images                
+              run: |
+                docker images
 
             - name: Save Docker image to tar
               run: |
-                docker save my-app:${{ github.sha }} -o my-app.tar.gz
+                docker save my-app:v1 -o my-app.tar.gz
+
+            - name: File existance check
+              run: |
+                ls -tlrh
+                pwd
                 
             - name: Upload Docker image as artifact
               uses: actions/upload-artifact@v3
