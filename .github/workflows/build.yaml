@@ -35,13 +35,13 @@ jobs:
 
             - name: Save Docker image to tar
               run: |
-                docker save my-app:${{ github.sha }} -o my-app-${{ github.sha }}.tar
+                docker save my-app:${{ github.sha }} -o my-app.tar.gz
                 
             - name: Upload Docker image as artifact
               uses: actions/upload-artifact@v3
               with:
-                name: my-app-${{ github.sha }}.tar.gz
-                path: my-app-${{ github.sha }}.tar.gz     
+                name: docker-image
+                path: my-app.tar.gz
         
 
     deploy:
