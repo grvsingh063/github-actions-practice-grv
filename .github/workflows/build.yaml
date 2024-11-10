@@ -30,6 +30,9 @@ jobs:
               run: |
                 docker push ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
 
+            - name: List Docker images
+              run: docker images                
+
             - name: Save Docker image to tar
               run: |
                 docker save my-app:${{ github.sha }} -o my-app-${{ github.sha }}.tar
