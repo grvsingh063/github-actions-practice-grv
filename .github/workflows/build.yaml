@@ -11,6 +11,17 @@ jobs:
             - name: checkout code
               uses: actions/checkout@v4
 
-            - name: Execute the commands
+            - name: building the job
               run: |
-                echo "Hello world!"
+                echo "building"
+
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code for deploy
+              uses: actions/checkout@v4
+
+
+            - name: Deploying into kubernetes cluster
+              run: |
+                echo "deploying"
